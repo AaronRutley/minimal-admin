@@ -1,5 +1,5 @@
 === MinimalAdmin ===
-Contributors: elevenmedia
+Contributors: AaronRutley
 Tags: admin,minimal,dashboard
 Requires at least: 3.4.2
 Tested up to: 3.4.2
