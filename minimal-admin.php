@@ -37,22 +37,21 @@ class eleven_minimail_admin {
 		// clean up WordPress dashboard with this CSS 
 		function minimal_dashboard_custom_admin_styles() {
 		echo '<style type="text/css">	
-					.wp-menu-separator 					{ display:none; }
-					#wp-admin-bar-comments 			{ display:none; } 
-					#wp-admin-bar-new-content 	{ display:none; } 
-					#wp-admin-bar-wpseo-menu		{ display:none; }
-					#footer 										{ display:none; }  
-					.tablenav.top 							{ display:none; }
-					#screen-options-link-wrap 	{ display:none; }
-					#contextual-help-link-wrap 	{ display:none; }
-					.column-wpseo-score 				{ display:none; }
-					.column-wpseo-title					{ display:none; }
-					.column-wpseo-metadesc 			{ display:none; }
-					.column-wpseo-focuskw 			{ display:none; }
-					#collapse-menu							{ display:none; }
+					.wp-menu-separator	{ display:none; }
+					#wp-admin-bar-comments	{ display:none; } 
+					#wp-admin-bar-new-content	{ display:none; } 
+					#wp-admin-bar-wpseo-menu	{ display:none; }
+					#footer	{ display:none; }  
+					.tablenav.top	{ display:none; }
+					#screen-options-link-wrap	{ display:none; }
+					#contextual-help-link-wrap	{ display:none; }
+					.column-wpseo-score	{ display:none; }
+					.column-wpseo-title	{ display:none; }
+					.column-wpseo-metadesc	{ display:none; }
+					.column-wpseo-focuskw	{ display:none; }
+					#collapse-menu	{ display:none; }
 					</style>';
 		}
-		add_action('admin_head', 'minimal_dashboard_custom_admin_styles');
 			
 			
 		// hide menu items from all users 
