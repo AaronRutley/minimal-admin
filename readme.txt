@@ -8,7 +8,7 @@ Stable tag: 1.0
 
 == Description ==
 
-TBA 
+No frills & experimental plugin to hide non essential wp-admin menu / dashboard functionality.
 
 == Copyright And Warranty ==
 

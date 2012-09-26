@@ -2,7 +2,7 @@
 /*
 Plugin Name: Minimal Admin 
 Plugin URI: http://elevenmedia.com.au
-Description: No frills & experimental plugin to hide non essential wp-admin menu / dashboard functionality = test.
+Description: No frills & experimental plugin to hide non essential wp-admin menu / dashboard functionality.
 Version: 1.0.
 Author: Aaron Rutley
 Author URI: http://elevenmedia.com.au/
