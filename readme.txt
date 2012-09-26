@@ -12,7 +12,7 @@ No frills & experimental plugin to hide non essential wp-admin menu / dashboard 
 
 == Copyright And Warranty ==
 
-Copyright © 2012 Eleven Media
+Copyright © 2012 Aaron Rutley
 This software is provided for free, as is, under the GPL v2
 
 == Installation ==
