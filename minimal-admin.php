@@ -74,7 +74,8 @@ class Eleven_Minimal_Admin {
 
 		while ( prev( $menu ) ){
 			$value = explode( ' ',$menu[key( $menu )][0] );
-			if ( in_array( $value[0] != NULL?$value[0]:"" , $restricted ) ){
+			$menu_item = ( $value[0] != NULL ) ? $value[0]: "";
+			if ( in_array( $menu_item, $restricted ) ){
 				unset( $menu[key( $menu )] );
 			}
 		}
