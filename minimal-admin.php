@@ -33,18 +33,18 @@ class Eleven_Minimal_Admin {
 		// hide admin bar when viwing site
 		add_filter( 'show_admin_bar', '__return_false' );
 
-		add_action( 'admin_menu', array( &$this, 'minimal_dashboard_remove_menu_items' ) );
+		add_action( 'admin_menu', array( &$this, 'remove_menu_items' ) );
 
-		add_filter( 'manage_pages_columns', array( &$this, 'minimal_dashboard_custom_columns' ) );
-		add_filter( 'manage_posts_columns', array( &$this, 'minimal_dashboard_custom_columns' ) );
+		add_filter( 'manage_pages_columns', array( &$this, 'custom_columns' ) );
+		add_filter( 'manage_posts_columns', array( &$this, 'custom_columns' ) );
 
-		add_action( 'admin_menu', array( &$this, 'minimal_dashboard_hide_dashboard' ) );
+		add_action( 'admin_menu', array( &$this, 'hide_dashboard' ) );
 
-		add_action( 'admin_init', array( &$this, 'minimal_dashboard_add_grav_forms' ) );
+		add_action( 'admin_init', array( &$this, 'add_grav_forms' ) );
 	}
 
 	// clean up WordPress dashboard with this CSS 
-	function minimal_dashboard_custom_admin_styles() { ?>
+	function custom_admin_styles() { ?>
 <style type="text/css">	
 	.wp-menu-separator	{ display:none; }
 	#wp-admin-bar-comments	{ display:none; } 
@@ -65,7 +65,7 @@ class Eleven_Minimal_Admin {
 
 
 	// hide menu items from all users 
-	function minimal_dashboard_remove_menu_items() {
+	function remove_menu_items() {
 		global $menu;
 
 		$restricted = array( __( 'Links' ), __( 'Comments' ), __( 'Media' ), __( 'Dashboard' ), __( 'Tools' ), __( 'Profile' ) );
@@ -82,7 +82,7 @@ class Eleven_Minimal_Admin {
 
 
 	// tidy up edit page screen to leave just the title 
-	function minimal_dashboard_custom_columns( $defaults ) {
+	function custom_columns( $defaults ) {
 		unset( $defaults['comments'] );
 		unset( $defaults['author'] );
 		unset( $defaults['date'] );
@@ -94,7 +94,7 @@ class Eleven_Minimal_Admin {
 
 
 	// hide dashboard by redirecting user to 'all pages' 
-	function minimal_dashboard_hide_dashboard ( ) {
+	function hide_dashboard ( ) {
 		if ( preg_match( '#wp-admin/?( index.php )?$#', $_SERVER['REQUEST_URI'] ) ) {
 			wp_redirect( get_option( 'siteurl' ) . '/wp-admin/edit.php?post_type=page' );
 		}
@@ -102,7 +102,7 @@ class Eleven_Minimal_Admin {
 
 
 	// grant editor access to gravity forms 
-	function minimal_dashboard_add_grav_forms( ){
+	function add_grav_forms( ){
 		$role = get_role( 'editor' );
 		$role->add_cap( 'gform_full_access' );
 	}
