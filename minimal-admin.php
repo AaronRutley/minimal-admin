@@ -42,60 +42,65 @@ class Eleven_Minimal_Admin {
 
 		add_action( 'admin_init', array( &$this, 'minimal_dashboard_add_grav_forms' ) );
 	}
-		
+
 	// clean up WordPress dashboard with this CSS 
-	function minimal_dashboard_custom_admin_styles() {
-	echo '<style type="text/css">	
-				.wp-menu-separator	{ display:none; }
-				#wp-admin-bar-comments	{ display:none; } 
-				#wp-admin-bar-new-content	{ display:none; } 
-				#wp-admin-bar-wpseo-menu	{ display:none; }
-				#footer	{ display:none; }  
-				.tablenav.top	{ display:none; }
-				#screen-options-link-wrap	{ display:none; }
-				#contextual-help-link-wrap	{ display:none; }
-				.column-wpseo-score	{ display:none; }
-				.column-wpseo-title	{ display:none; }
-				.column-wpseo-metadesc	{ display:none; }
-				.column-wpseo-focuskw	{ display:none; }
-				#collapse-menu	{ display:none; }
-				</style>';
+	function minimal_dashboard_custom_admin_styles() { ?>
+<style type="text/css">	
+	.wp-menu-separator	{ display:none; }
+	#wp-admin-bar-comments	{ display:none; } 
+	#wp-admin-bar-new-content	{ display:none; } 
+	#wp-admin-bar-wpseo-menu	{ display:none; }
+	#footer	{ display:none; }  
+	.tablenav.top	{ display:none; }
+	#screen-options-link-wrap	{ display:none; }
+	#contextual-help-link-wrap	{ display:none; }
+	.column-wpseo-score	{ display:none; }
+	.column-wpseo-title	{ display:none; }
+	.column-wpseo-metadesc	{ display:none; }
+	.column-wpseo-focuskw	{ display:none; }
+	#collapse-menu	{ display:none; }
+</style>
+<?php
 	}
-		
-		
+
+
 	// hide menu items from all users 
 	function minimal_dashboard_remove_menu_items() {
-	  global $menu;
-	  $restricted = array(__('Links'), __('Comments'), __('Media'), __('Dashboard'), __('Tools'), __('Profile'));
-	  end ($menu);
-		  while (prev($menu)){
-		    $value = explode(' ',$menu[key($menu)][0]);
-		    if(in_array($value[0] != NULL?$value[0]:"" , $restricted)){
-		      unset($menu[key($menu)]);}
-		  }
+		global $menu;
+
+		$restricted = array(__('Links'), __('Comments'), __('Media'), __('Dashboard'), __('Tools'), __('Profile'));
+
+		end ($menu);
+
+		while (prev($menu)){
+			$value = explode(' ',$menu[key($menu)][0]);
+			if(in_array($value[0] != NULL?$value[0]:"" , $restricted)){
+				unset($menu[key($menu)]);
+			}
+		}
 	}
-		
-		
+
+
 	// tidy up edit page screen to leave just the title 
 	function minimal_dashboard_custom_columns($defaults) {
-	  unset($defaults['comments']);
-	  unset($defaults['author']);
-	  unset($defaults['date']);
-	  unset($defaults['categories']);
-	  unset($defaults['tags']);
-	  unset($defaults['wpseo-score']); 
-	  return $defaults;
+		unset($defaults['comments']);
+		unset($defaults['author']);
+		unset($defaults['date']);
+		unset($defaults['categories']);
+		unset($defaults['tags']);
+		unset($defaults['wpseo-score']); 
+		return $defaults;
 	}
-		
-		
+
+
 	// hide dashboard by redirecting user to 'all pages' 
 	function minimal_dashboard_hide_dashboard () {
-	        if ( preg_match( '#wp-admin/?(index.php)?$#', $_SERVER['REQUEST_URI'] )) {
-	                wp_redirect( get_option( 'siteurl' ) . '/wp-admin/edit.php?post_type=page');
-	        }
+		if ( preg_match( '#wp-admin/?(index.php)?$#', $_SERVER['REQUEST_URI'] )) {
+			wp_redirect( get_option( 'siteurl' ) . '/wp-admin/edit.php?post_type=page');
+		}
 	}
-		
-		
+
+
 	// grant editor access to gravity forms 
 	function minimal_dashboard_add_grav_forms(){
 		$role = get_role('editor');
