@@ -27,7 +27,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 	
-class eleven_minimail_admin {
+class eleven_minimal_admin {
 	
 		function __construct(){
 
@@ -100,6 +100,6 @@ class eleven_minimail_admin {
 	}
 }
 
-$eleven_minimail_admin = new eleven_minimail_admin;
+$eleven_minimal_admin = new eleven_minimal_admin;
 
 ?>
