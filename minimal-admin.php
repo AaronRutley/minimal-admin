@@ -10,7 +10,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-/*  Copyright 2012 Eleven Media (email : info@elevenmedia.com.au)
+/*  Copyright 2012 Eleven Media ( email : info@elevenmedia.com.au )
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
 class Eleven_Minimal_Admin {
 
-	function __construct(){
+	function __construct( ){
 		// hide admin bar when viwing site
 		add_filter( 'show_admin_bar', '__return_false' );
 
@@ -68,43 +68,43 @@ class Eleven_Minimal_Admin {
 	function minimal_dashboard_remove_menu_items() {
 		global $menu;
 
-		$restricted = array(__('Links'), __('Comments'), __('Media'), __('Dashboard'), __('Tools'), __('Profile'));
+		$restricted = array( __( 'Links' ), __( 'Comments' ), __( 'Media' ), __( 'Dashboard' ), __( 'Tools' ), __( 'Profile' ) );
 
-		end ($menu);
+		end( $menu );
 
-		while (prev($menu)){
-			$value = explode(' ',$menu[key($menu)][0]);
-			if(in_array($value[0] != NULL?$value[0]:"" , $restricted)){
-				unset($menu[key($menu)]);
+		while ( prev( $menu ) ){
+			$value = explode( ' ',$menu[key( $menu )][0] );
+			if ( in_array( $value[0] != NULL?$value[0]:"" , $restricted ) ){
+				unset( $menu[key( $menu )] );
 			}
 		}
 	}
 
 
 	// tidy up edit page screen to leave just the title 
-	function minimal_dashboard_custom_columns($defaults) {
-		unset($defaults['comments']);
-		unset($defaults['author']);
-		unset($defaults['date']);
-		unset($defaults['categories']);
-		unset($defaults['tags']);
-		unset($defaults['wpseo-score']); 
+	function minimal_dashboard_custom_columns( $defaults ) {
+		unset( $defaults['comments'] );
+		unset( $defaults['author'] );
+		unset( $defaults['date'] );
+		unset( $defaults['categories'] );
+		unset( $defaults['tags'] );
+		unset( $defaults['wpseo-score'] ); 
 		return $defaults;
 	}
 
 
 	// hide dashboard by redirecting user to 'all pages' 
-	function minimal_dashboard_hide_dashboard () {
-		if ( preg_match( '#wp-admin/?(index.php)?$#', $_SERVER['REQUEST_URI'] )) {
-			wp_redirect( get_option( 'siteurl' ) . '/wp-admin/edit.php?post_type=page');
+	function minimal_dashboard_hide_dashboard ( ) {
+		if ( preg_match( '#wp-admin/?( index.php )?$#', $_SERVER['REQUEST_URI'] ) ) {
+			wp_redirect( get_option( 'siteurl' ) . '/wp-admin/edit.php?post_type=page' );
 		}
 	}
 
 
 	// grant editor access to gravity forms 
-	function minimal_dashboard_add_grav_forms(){
-		$role = get_role('editor');
-		$role->add_cap('gform_full_access');
+	function minimal_dashboard_add_grav_forms( ){
+		$role = get_role( 'editor' );
+		$role->add_cap( 'gform_full_access' );
 	}
 }
 
