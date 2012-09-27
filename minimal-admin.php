@@ -101,5 +101,3 @@ class Eleven_Minimal_Admin {
 }
 
 $eleven_minimal_admin = new Eleven_Minimal_Admin();
-
-?>
