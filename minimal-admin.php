@@ -34,6 +34,7 @@ class Eleven_Minimal_Admin {
 		add_filter( 'show_admin_bar', '__return_false' );
 
 		add_action( 'admin_menu', array( &$this, 'remove_menu_items' ) );
+		add_action( 'admin_head', array( &$this, 'custom_admin_styles' ) );
 
 		add_filter( 'manage_pages_columns', array( &$this, 'custom_columns' ) );
 		add_filter( 'manage_posts_columns', array( &$this, 'custom_columns' ) );
@@ -89,7 +90,6 @@ class Eleven_Minimal_Admin {
 		unset( $defaults['date'] );
 		unset( $defaults['categories'] );
 		unset( $defaults['tags'] );
-		unset( $defaults['wpseo-score'] ); 
 		return $defaults;
 	}
 
