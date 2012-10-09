@@ -1,16 +1,16 @@
 <?php
 /*
 Plugin Name: Minimal Admin 
-Plugin URI: http://elevenmedia.com.au
-Description: No frills & experimental plugin to hide non essential wp-admin functionality.
-Version: 1.1.
+Plugin URI: http://www.minimaladmin.com/
+Description: Very simple plugin to hide non essential wp-admin functionality.
+Version: 0.3.
 Author: Aaron Rutley
-Author URI: http://elevenmedia.com.au/
+Author URI: http://www.aaronrutley.com.au/
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-/*  Copyright 2012 Eleven Media ( email : info@elevenmedia.com.au )
+/*  Copyright 2012 Aaron Rutley
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,13 +27,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 	
-class Eleven_Minimal_Admin {
+class Minimal_Admin {
 
 	function __construct( ){
-		// hide admin bar when viwing site
 		add_filter( 'show_admin_bar', '__return_false' );
 
-		add_action( 'admin_menu', array( &$this, 'remove_menu_items' ) );
+		add_action( 'admin_menu', array( &$this, 'hide_menu_items' ) );
 		add_action( 'admin_head', array( &$this, 'custom_admin_styles' ) );
 
 		add_filter( 'manage_pages_columns', array( &$this, 'custom_columns' ) );
@@ -47,51 +46,47 @@ class Eleven_Minimal_Admin {
 	// clean up WordPress dashboard with this CSS 
 	function custom_admin_styles() { ?>
 <style type="text/css">	
-	.wp-menu-separator	{ display:none; }
-	#wp-admin-bar-comments	{ display:none; } 
-	#wp-admin-bar-new-content	{ display:none; } 
-	#wp-admin-bar-wpseo-menu	{ display:none; }
-	#footer	{ display:none; }  
-	.tablenav.top	{ display:none; }
-	#contextual-help-link-wrap	{ display:none; }
-	.column-wpseo-score	{ display:none; }
-	.column-wpseo-title	{ display:none; }
-	.column-wpseo-metadesc	{ display:none; }
-	.column-wpseo-focuskw	{ display:none; }
-	#collapse-menu	{ display:none; }
-
-	<?php 
-			$minimail_options = get_option('sample_theme_options');
-			$option_show_screenoptions = $minimail_options['option2'];
-			if ($option_show_screenoptions == '1') { 
-					echo '#screen-options-link-wrap	{ display:none; }'; 
-			} ?>
+	#wp-admin-bar-comments { display:none; } 
+	#wp-admin-bar-new-content { display:none; } 
+	#wp-admin-bar-wpseo-menu { display:none; }
+	#footer { display:none; }  
+	#collapse-menu { display:none; }
+	.column-wpseo-score { display:none; }
+	.column-wpseo-title { display:none; }
+	.column-wpseo-metadesc { display:none; }
+	.column-wpseo-focuskw { display:none; }
+	.menu-icon-dashboard { display:none; }
+  .wp-menu-separator { display:none; }
+	li#wp-admin-bar-site-name.menupop .ab-sub-wrapper	{ display:none; }
+	
+<?php 
+	$minimail_options = get_option('minimal_admin_plugin_options');
+	$option_show_screenoptions = $minimail_options['option_hide_screen_options'];
+	if ($option_show_screenoptions == '1') { 
+		echo '#screen-options-link-wrap	{ display:none; }'; 
+		echo '#contextual-help-link-wrap	{ display:none; }';
+		echo '.tablenav.top								{ display:none; }';
+	} 
+?>
  
 </style>
 <?php
 	}
 
 
-
-
-
 	// hide menu items from all users 
-	function remove_menu_items() {
+	function hide_menu_items() {
 		remove_menu_page('tools.php');  
-		remove_menu_page('link-manager.php');  
+		remove_menu_page('link-manager.php');
 		remove_menu_page('upload.php'); 
-		remove_menu_page('index.php'); 
 		remove_menu_page('edit-comments.php'); 
-		$minimail_options = get_option('sample_theme_options');
-		$option_show_posts = $minimail_options['option1'];
+		remove_menu_page('profile.php'); 
+		$minimail_options = get_option('minimal_admin_plugin_options');
+		$option_show_posts = $minimail_options['option_hide_posts'];
 		if ($option_show_posts == '1') { remove_menu_page('edit.php'); }
 		
 	}
 	
-		
-	
-	
-
 
 	// tidy up edit page screen to leave just the title 
 	function custom_columns( $defaults ) {
@@ -119,132 +114,54 @@ class Eleven_Minimal_Admin {
 	}
 }
 
-$eleven_minimal_admin = new Eleven_Minimal_Admin();
+$minimal_admin = new Minimal_Admin();
 
 
 
 
-/* simple options page 		
-add_action('admin_init', 'minimal_admin_register_menu');
-add_action('admin_menu', 'minimal_admin_options_page');
+// start simple options page 		
+add_action( 'admin_init', 'minimail_admin_options_init' );
+add_action( 'admin_menu', 'minimail_admin_options_add_page');
 
 
-function minimal_admin_register_menu() {
-	add_options_page('Minimal Admin', 'Minimal Admin', 'administrator', 'gridly_admin', 'minimal_adminoptions_page');
-}
-*/
-
-
-
-add_action( 'admin_init', 'theme_options_init' );
-add_action( 'admin_menu', 'theme_options_add_page' );
-
-/**
- * Init plugin options to white list our options
- */
-function theme_options_init(){
-	register_setting( 'sample_options', 'sample_theme_options', 'theme_options_validate' );
+// Init plugin options to white list our options
+function minimail_admin_options_init(){
+	register_setting( 'minimal_admin_options', 'minimal_admin_plugin_options', 'plugin_options_validate' );
 }
 
-/**
- * Load up the menu page
- */
- 
-function theme_options_add_page() {
-		add_options_page('Minimal Admin', 'Minimal Admin', 'administrator', 'gridly_admin', 'minimal_admin_options_page');
+
+// load up the menu page
+function minimail_admin_options_add_page() {
+	add_options_page('Minimal Admin', 'Minimal Admin', 'administrator', 'minimal_admin', 'minimal_admin_options_page');
 }
 
-/**
- * Create arrays for our select and radio options
- */
-$select_options = array(
-	'0' => array(
-		'value' =>	'0',
-		'label' => __( 'Zero', 'sampletheme' )
-	),
-	'1' => array(
-		'value' =>	'1',
-		'label' => __( 'One', 'sampletheme' )
-	),
-	'2' => array(
-		'value' => '2',
-		'label' => __( 'Two', 'sampletheme' )
-	),
-	'3' => array(
-		'value' => '3',
-		'label' => __( 'Three', 'sampletheme' )
-	),
-	'4' => array(
-		'value' => '4',
-		'label' => __( 'Four', 'sampletheme' )
-	),
-	'5' => array(
-		'value' => '3',
-		'label' => __( 'Five', 'sampletheme' )
-	)
-);
 
-
-
-/**
- * Create the options page
- */
+// create the options page
 function minimal_admin_options_page() {
-	global $select_options, $radio_options;
-
-	if ( ! isset( $_REQUEST['settings-updated'] ) )
-		$_REQUEST['settings-updated'] = false;
-
 	?>
 	<div class="wrap">
 	<div id="icon-options-general" class="icon32"><br></div>
 		<h2>Minimal Admin Options</h2>
 
 		<form method="post" action="options.php">
-			<?php settings_fields( 'sample_options' ); ?>
-			<?php $options = get_option( 'sample_theme_options' ); ?>
+			<?php settings_fields( 'minimal_admin_options' ); ?>
+			<?php $options = get_option( 'minimal_admin_plugin_options' ); ?>
 
 			<table class="form-table">
-			
-				<tr valign="top"><th scope="row">Posts</th>
+				<tr valign="top"><th scope="row">Admin Side Menu Options</th>
 					<td>
-						<input id="sample_theme_options[option1]" name="sample_theme_options[option1]" type="checkbox" value="1" <?php checked( '1', $options['option1'] ); ?> />
-						<label class="description" for="sample_theme_options[option1]"><?php _e( 'Hide Posts', 'sampletheme' ); ?></label>
+						<input id="minimal_admin_plugin_options[option_hide_posts]" name="minimal_admin_plugin_options[option_hide_posts]" type="checkbox" value="1" <?php checked( '1', $options['option_hide_posts'] ); ?> />
+						<label class="description" for="minimal_admin_plugin_options[option_hide_posts]"><?php _e( 'Hide the posts menu item', 'minimailadminplugin' ); ?></label>
 					</td>
 				</tr>
 				
-				<tr valign="top"><th scope="row">Screen Options</th>
+				<tr valign="top"><th scope="row">Admin Edit Screens</th>
 					<td>
-						<input id="sample_theme_options[option2]" name="sample_theme_options[option2]" type="checkbox" value="1" <?php checked( '1', $options['option2'] ); ?> />
-						<label class="description" for="sample_theme_options[option2]"><?php _e( 'Hide Screen Options', 'sampletheme' ); ?></label>
-					</td>
-				</tr>
-				
-				
-				
-				<tr valign="top"><th scope="row"><?php _e( 'Select input', 'sampletheme' ); ?></th>
-					<td>
-						<select name="sample_theme_options[selectinput]">
-							<?php
-								$selected = $options['selectinput'];
-								$p = '';
-								$r = '';
-
-								foreach ( $select_options as $option ) {
-									$label = $option['label'];
-									if ( $selected == $option['value'] ) // Make default first in list
-										$p = "\n\t<option style=\"padding-right: 10px;\" selected='selected' value='" . esc_attr( $option['value'] ) . "'>$label</option>";
-									else
-										$r .= "\n\t<option style=\"padding-right: 10px;\" value='" . esc_attr( $option['value'] ) . "'>$label</option>";
-								}
-								echo $p . $r;
-							?>
-						</select>
-						<label class="description" for="sample_theme_options[selectinput]"><?php _e( 'Sample select input', 'sampletheme' ); ?></label>
+						<input id="minimal_admin_plugin_options[option_hide_screen_options]" name="minimal_admin_plugin_options[option_hide_screen_options]" type="checkbox" value="1" <?php checked( '1', $options['option_hide_screen_options'] ); ?> />
+						<label class="description" for="minimal_admin_plugin_options[option_hide_screen_options]"><?php _e( 'Hide screen options tab, help tab and the post filtering bar', 'minimailadminplugin' ); ?></label>
 					</td>
 				</tr>
 			</table>
-
 			<p class="submit">
 				<input type="submit" class="button-primary" value="Save Options" />
 			</p>
@@ -253,28 +170,18 @@ function minimal_admin_options_page() {
 	<?php
 }
 
-/**
- * Sanitize and validate input. Accepts an array, return a sanitized array.
- */
-function theme_options_validate( $input ) {
-	global $select_options, $radio_options;
+// sanitize and validate input
+function plugin_options_validate( $input ) {
 
-	// Our checkbox value is either 0 or 1
-	if ( ! isset( $input['option1'] ) )
-		$input['option1'] = null;
-	$input['option1'] = ( $input['option1'] == 1 ? 1 : 0 );
+	// check option hide posts checkbox value is either 0 or 1
+	if ( ! isset( $input['option_hide_posts'] ) )
+	$input['option_hide_posts'] = null;
+	$input['option_hide_posts'] = ( $input['option_hide_posts'] == 1 ? 1 : 0 );
 	
-	// Our checkbox value is either 0 or 1
-	if ( ! isset( $input['option2'] ) )
-	$input['option2'] = null;
-	$input['option2'] = ( $input['option2'] == 1 ? 1 : 0 );
+	// check option hide screen optionscheckbox value is either 0 or 1
+	if ( ! isset( $input['option_hide_screen_options'] ) )
+	$input['option_hide_screen_options'] = null;
+	$input['option_hide_screen_options'] = ( $input['option_hide_screen_options'] == 1 ? 1 : 0 );
 
-	// Our select option must actually be in our array of select options
-	if ( ! array_key_exists( $input['selectinput'], $select_options ) )
-		$input['selectinput'] = null;
-		
 	return $input;
 }
-
-// ref http://themeshaper.com/2010/06/03/sample-theme-options/
-
