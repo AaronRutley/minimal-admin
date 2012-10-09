@@ -63,9 +63,9 @@ class Minimal_Admin {
 	$minimail_options = get_option('minimal_admin_plugin_options');
 	$option_show_screenoptions = $minimail_options['option_hide_screen_options'];
 	if ($option_show_screenoptions == '1') { 
-		echo '#screen-options-link-wrap	{ display:none; }'; 
-		echo '#contextual-help-link-wrap	{ display:none; }';
-		echo '.tablenav.top								{ display:none; }';
+		echo '#screen-options-link-wrap { display:none; }'; 
+		echo '#contextual-help-link-wrap { display:none; }';
+		echo '.tablenav.top { display:none; }';
 	} 
 ?>
  

@@ -23,9 +23,9 @@ Minimal Admin includes a very simple options panel for admins to
 - Hide Posts from the wordpress menu
 - Hide screen options tab, help tab and the post filtering bar  
 
-Once activated Minimal Admin does the following if you have use these plugins 
+Once activated Minimal Admin does the following if you are using these plugins 
 - WordPress SEO: Hides WordPress SEO columns from the edit page / edit posts screens 
-- Gravity Forms: Grants editor (client) access to edit Gravity Forms 
+- Gravity Forms: Grants editor (client) access to manage Gravity Forms 
 
 
 == Copyright And Warranty ==
