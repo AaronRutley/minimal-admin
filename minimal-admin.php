@@ -41,7 +41,20 @@ class Minimal_Admin {
 		add_action( 'admin_menu', array( &$this, 'hide_dashboard' ) );
 		add_action( 'admin_init', array( &$this, 'add_grav_forms' ) );
 		
+		add_filter( 'plugin_action_links', array( &$this, 'add_settings_link'), 10, 2 ); 
+		
+		$options = get_option('minimal-admin');
+		if ( empty( $options ) ) {
+			$options = array(
+									'option_1' => false,
+									'option_2' => false,
+									'option_3' => false,
+			);
+			update_option( 'minimal-admin', $options );
+		}
 	}
+	
+
 
 	// clean up WordPress dashboard with this CSS 
 	function custom_admin_styles() { ?>
@@ -60,8 +73,8 @@ class Minimal_Admin {
 	li#wp-admin-bar-site-name.menupop .ab-sub-wrapper	{ display:none; }
 	
 <?php 
-	$minimail_options = get_option('minimal_admin_plugin_options');
-	$option_show_screenoptions = $minimail_options['option_hide_screen_options'];
+	$options = get_option('minimal-admin');
+	$option_show_screenoptions = $options['option_2'];
 	if ($option_show_screenoptions == '1') { 
 		echo '#screen-options-link-wrap { display:none; }'; 
 		echo '#contextual-help-link-wrap { display:none; }';
@@ -81,10 +94,12 @@ class Minimal_Admin {
 		remove_menu_page('upload.php'); 
 		remove_menu_page('edit-comments.php'); 
 		remove_menu_page('profile.php'); 
-		$minimail_options = get_option('minimal_admin_plugin_options');
-		$option_show_posts = $minimail_options['option_hide_posts'];
-		if ($option_show_posts == '1') { remove_menu_page('edit.php'); }
-		
+
+		$options = get_option('minimal-admin');
+		$option_show_screenoptions = $options['option_1'];
+		if ($option_show_screenoptions == '1') { 
+		remove_menu_page('edit.php'); 
+		}
 	}
 	
 
@@ -112,6 +127,21 @@ class Minimal_Admin {
 		$role = get_role( 'editor' );
 		$role->add_cap( 'gform_full_access' );
 	}
+
+
+	// add settings link to plugin summary page	
+	function add_settings_link($links, $file) {
+	static $this_plugin;
+	if (!$this_plugin) $this_plugin = plugin_basename(__FILE__);
+	 
+	if ($file == $this_plugin){
+	$settings_link = '<a href="options-general.php?page=minimal-admin">'.__("Settings", "minimal-admin").'</a>';
+	 array_unshift($links, $settings_link);
+	}
+	return $links;
+	}
+ 
+ 
 }
 
 $minimal_admin = new Minimal_Admin();
@@ -119,69 +149,76 @@ $minimal_admin = new Minimal_Admin();
 
 
 
-// start simple options page 		
-add_action( 'admin_init', 'minimail_admin_options_init' );
-add_action( 'admin_menu', 'minimail_admin_options_add_page');
+// options page take 2 - under dev
 
-
-// Init plugin options to white list our options
-function minimail_admin_options_init(){
-	register_setting( 'minimal_admin_options', 'minimal_admin_plugin_options', 'plugin_options_validate' );
+function min_admin_plugin_menu() {
+ add_options_page( __( 'Minimal Admin', 'minimal-admin' ), __( 'Minimal Admin', 'minimal-admin' ), 'update_core', 'minimal-admin', 'min_admin_settings' );
 }
+add_action( 'admin_menu', 'min_admin_plugin_menu' );
 
 
-// load up the menu page
-function minimail_admin_options_add_page() {
-	add_options_page('Minimal Admin', 'Minimal Admin', 'administrator', 'minimal_admin', 'minimal_admin_options_page');
-}
+function min_admin_settings() {
+	if ( ! current_user_can( 'update_core' ) )
+		wp_die( __( 'You do not have sufficient permissions to access this page.', 'minimal-admin' ) );
 
+	$message = '';
+	if ( ! empty( $_REQUEST['submit'] ) ) {
+		check_admin_referer( 'minimal-admin-settings' );
 
-// create the options page
-function minimal_admin_options_page() {
-	?>
+		min_admin_save_settings();
+		$message = __( 'Settings updated', 'minimal-admin' );
+	}
+	$options = get_option( 'minimal-admin' );
+	$messages = array(
+					'option_1' => __( 'Hide Posts', 'minimal-admin' ),
+					'option_2' => __( 'Hide Screen Settings etc', 'minimal-admin' ),
+					'option_3' => __( 'Option 3', 'minimal-admin' )
+				);
+?>
 	<div class="wrap">
-	<div id="icon-options-general" class="icon32"><br></div>
-		<h2>Minimal Admin Options</h2>
+		<?php screen_icon('options-general'); ?>
+		<h2><?php _e( 'Minimal Admin', 'minimal-admin' ); ?></h2>
+		
+		<?php print_r($options); ?>
+<?php
+	if ( ! empty( $message ) ) {
+?>
+		<div class="updated">
+			<p><?php echo $message; ?></p>
+		</div>
+<?php
+	}
+?>
+		<form method="post">
+		<?php wp_nonce_field( 'minimal-admin-settings' ); ?>
+<?php
+	foreach ( $options as $type => $enabled ) {
+		$checked = '';
+		if ( $enabled )
+			$checked = ' checked="checked"';
 
-		<form method="post" action="options.php">
-			<?php settings_fields( 'minimal_admin_options' ); ?>
-			<?php $options = get_option( 'minimal_admin_plugin_options' ); ?>
-
-			<table class="form-table">
-				<tr valign="top"><th scope="row">Admin Side Menu Options</th>
-					<td>
-						<input id="minimal_admin_plugin_options[option_hide_posts]" name="minimal_admin_plugin_options[option_hide_posts]" type="checkbox" value="1" <?php checked( '1', $options['option_hide_posts'] ); ?> />
-						<label class="description" for="minimal_admin_plugin_options[option_hide_posts]"><?php _e( 'Hide the posts menu item', 'minimailadminplugin' ); ?></label>
-					</td>
-				</tr>
-				
-				<tr valign="top"><th scope="row">Admin Edit Screens</th>
-					<td>
-						<input id="minimal_admin_plugin_options[option_hide_screen_options]" name="minimal_admin_plugin_options[option_hide_screen_options]" type="checkbox" value="1" <?php checked( '1', $options['option_hide_screen_options'] ); ?> />
-						<label class="description" for="minimal_admin_plugin_options[option_hide_screen_options]"><?php _e( 'Hide screen options tab, help tab and the post filtering bar', 'minimailadminplugin' ); ?></label>
-					</td>
-				</tr>
-			</table>
-			<p class="submit">
-				<input type="submit" class="button-primary" value="Save Options" />
-			</p>
+		echo "<p><input type='checkbox' id='$type' name='$type' value='1'$checked> <label for='$type'>{$messages[$type]}</label></p>";
+	}
+?>
+		<br/><br/>
+	
+		<p><input class="button button-primary" type="submit" name="submit" id="submit" value="<?php esc_attr_e( 'Save Changes', 'minimal-admin' ); ?>" /></p>
 		</form>
 	</div>
-	<?php
+<?php
 }
 
-// sanitize and validate input
-function plugin_options_validate( $input ) {
+function min_admin_save_settings() {
+	$types = array( 'option_1', 'option_2', 'option_3' );
+	$options = get_option( 'minimal-admin' );
 
-	// check option hide posts checkbox value is either 0 or 1
-	if ( ! isset( $input['option_hide_posts'] ) )
-	$input['option_hide_posts'] = null;
-	$input['option_hide_posts'] = ( $input['option_hide_posts'] == 1 ? 1 : 0 );
+	foreach ( $types as $type ) {
+		if ( ! empty( $_REQUEST[$type] ) )
+			$options[$type] = true;
+		else
+			$options[$type] = false;
+	}
 	
-	// check option hide screen optionscheckbox value is either 0 or 1
-	if ( ! isset( $input['option_hide_screen_options'] ) )
-	$input['option_hide_screen_options'] = null;
-	$input['option_hide_screen_options'] = ( $input['option_hide_screen_options'] == 1 ? 1 : 0 );
 
-	return $input;
+	update_option( 'minimal-admin', $options );
 }
