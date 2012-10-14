@@ -27,7 +27,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 	
-class Minimal_Admin {
+class Minimal_Admin_Plugin {
 
 	function __construct( ){
 		add_filter( 'show_admin_bar', '__return_false' );
@@ -142,7 +142,7 @@ class Minimal_Admin {
  
  
 }
-$minimal_admin = new Minimal_Admin();
+$minimal_admin = new Minimal_Admin_Plugin();
 
 
 
