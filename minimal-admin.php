@@ -46,9 +46,8 @@ class Minimal_Admin {
 		$options = get_option('minimal-admin');
 		if ( empty( $options ) ) {
 			$options = array(
-									'option_1' => false,
-									'option_2' => false,
-									'option_3' => false,
+									'hide_posts' => false,
+									'hide_screen_options' => false
 			);
 			update_option( 'minimal-admin', $options );
 		}
@@ -74,8 +73,8 @@ class Minimal_Admin {
 	
 <?php 
 	$options = get_option('minimal-admin');
-	$option_show_screenoptions = $options['option_2'];
-	if ($option_show_screenoptions == '1') { 
+	$option_hide_screen_options = $options['hide_screen_options'];
+	if ($option_hide_screen_options == '1') { 
 		echo '#screen-options-link-wrap { display:none; }'; 
 		echo '#contextual-help-link-wrap { display:none; }';
 		echo '.tablenav.top { display:none; }';
@@ -96,8 +95,8 @@ class Minimal_Admin {
 		remove_menu_page('profile.php'); 
 
 		$options = get_option('minimal-admin');
-		$option_show_screenoptions = $options['option_1'];
-		if ($option_show_screenoptions == '1') { 
+		$option_hide_posts = $options['hide_posts'];
+		if ($option_hide_posts == '1') { 
 		remove_menu_page('edit.php'); 
 		}
 	}
@@ -131,94 +130,88 @@ class Minimal_Admin {
 
 	// add settings link to plugin summary page	
 	function add_settings_link($links, $file) {
-	static $this_plugin;
-	if (!$this_plugin) $this_plugin = plugin_basename(__FILE__);
-	 
-	if ($file == $this_plugin){
-	$settings_link = '<a href="options-general.php?page=minimal-admin">'.__("Settings", "minimal-admin").'</a>';
-	 array_unshift($links, $settings_link);
-	}
-	return $links;
+		static $this_plugin;
+		if (!$this_plugin) $this_plugin = plugin_basename(__FILE__);
+		 
+		if ($file == $this_plugin){
+		$settings_link = '<a href="options-general.php?page=minimal-admin">'.__("Settings", "minimal-admin").'</a>';
+		 array_unshift($links, $settings_link);
+		}
+		return $links;
 	}
  
  
 }
-
 $minimal_admin = new Minimal_Admin();
 
 
 
 
-// options page take 2 - under dev
-
-function min_admin_plugin_menu() {
- add_options_page( __( 'Minimal Admin', 'minimal-admin' ), __( 'Minimal Admin', 'minimal-admin' ), 'update_core', 'minimal-admin', 'min_admin_settings' );
-}
-add_action( 'admin_menu', 'min_admin_plugin_menu' );
-
-
-function min_admin_settings() {
-	if ( ! current_user_can( 'update_core' ) )
-		wp_die( __( 'You do not have sufficient permissions to access this page.', 'minimal-admin' ) );
-
-	$message = '';
-	if ( ! empty( $_REQUEST['submit'] ) ) {
-		check_admin_referer( 'minimal-admin-settings' );
-
-		min_admin_save_settings();
-		$message = __( 'Settings updated', 'minimal-admin' );
+// options page 
+	function min_admin_plugin_menu() {
+	 add_options_page( __( 'Minimal Admin', 'minimal-admin' ), __( 'Minimal Admin', 'minimal-admin' ), 'update_core', 'minimal-admin', 'min_admin_settings' );
 	}
-	$options = get_option( 'minimal-admin' );
-	$messages = array(
-					'option_1' => __( 'Hide Posts', 'minimal-admin' ),
-					'option_2' => __( 'Hide Screen Settings etc', 'minimal-admin' ),
-					'option_3' => __( 'Option 3', 'minimal-admin' )
-				);
-?>
-	<div class="wrap">
-		<?php screen_icon('options-general'); ?>
-		<h2><?php _e( 'Minimal Admin', 'minimal-admin' ); ?></h2>
+	add_action( 'admin_menu', 'min_admin_plugin_menu' );
+	
+	
+	function min_admin_settings() {
+		if ( ! current_user_can( 'update_core' ) )
+			wp_die( __( 'You do not have sufficient permissions to access this page.', 'minimal-admin' ) );
+	
+		$message = '';
+		if ( ! empty( $_REQUEST['submit'] ) ) {
+			check_admin_referer( 'minimal-admin-settings' );
+	
+			min_admin_save_settings();
+			$message = __( 'Settings updated', 'minimal-admin' );
+		}
+		$options = get_option( 'minimal-admin' );
+		$messages = array(
+						'hide_posts' => __( 'Hide Posts from the wp-admin menu', 'minimal-admin' ),
+						'hide_screen_options' => __( 'Hide screen options tab, help tab and the post filtering bar', 'minimal-admin' )
+					);
+	?>
+		<div class="wrap">
+			<?php screen_icon('options-general'); ?>
+			<h2><?php _e( 'Minimal Admin', 'minimal-admin' ); ?></h2>
+	<?php
+		if ( ! empty( $message ) ) {
+	?>
+			<div class="updated">
+				<p><?php echo $message; ?></p>
+			</div>
+	<?php
+		}
+	?>
+			<form method="post">
+			<?php wp_nonce_field( 'minimal-admin-settings' ); ?>
+	<?php
+		foreach ( $options as $type => $enabled ) {
+			$checked = '';
+			if ( $enabled )
+				$checked = ' checked="checked"';
+	
+			echo "<p><input type='checkbox' id='$type' name='$type' value='1'$checked> <label for='$type'>{$messages[$type]}</label></p>";
+		}
+	?>
+			<br/><br/>
 		
-		<?php print_r($options); ?>
-<?php
-	if ( ! empty( $message ) ) {
-?>
-		<div class="updated">
-			<p><?php echo $message; ?></p>
+			<p><input class="button button-primary" type="submit" name="submit" id="submit" value="<?php esc_attr_e( 'Save Changes', 'minimal-admin' ); ?>" /></p>
+			</form>
 		</div>
-<?php
-	}
-?>
-		<form method="post">
-		<?php wp_nonce_field( 'minimal-admin-settings' ); ?>
-<?php
-	foreach ( $options as $type => $enabled ) {
-		$checked = '';
-		if ( $enabled )
-			$checked = ' checked="checked"';
-
-		echo "<p><input type='checkbox' id='$type' name='$type' value='1'$checked> <label for='$type'>{$messages[$type]}</label></p>";
-	}
-?>
-		<br/><br/>
-	
-		<p><input class="button button-primary" type="submit" name="submit" id="submit" value="<?php esc_attr_e( 'Save Changes', 'minimal-admin' ); ?>" /></p>
-		</form>
-	</div>
-<?php
-}
-
-function min_admin_save_settings() {
-	$types = array( 'option_1', 'option_2', 'option_3' );
-	$options = get_option( 'minimal-admin' );
-
-	foreach ( $types as $type ) {
-		if ( ! empty( $_REQUEST[$type] ) )
-			$options[$type] = true;
-		else
-			$options[$type] = false;
+	<?php
 	}
 	
-
+	
+	function min_admin_save_settings() {
+		$types = array( 'hide_posts', 'hide_screen_options' );
+		$options = get_option( 'minimal-admin' );
+	
+		foreach ( $types as $type ) {
+			if ( ! empty( $_REQUEST[$type] ) )
+				$options[$type] = true;
+			else
+				$options[$type] = false;
+		}
 	update_option( 'minimal-admin', $options );
-}
+	}
