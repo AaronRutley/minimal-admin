@@ -1,0 +1,25 @@
+# Project specific ignores
+
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+
+# OS or IDE related
+.DS_Store
+.cache
+.project
+.settings
+.tmproj
+*.iml
+_notes
+dwsync.xml
+Thumbs.db
+/.idea
+/atlassian-ide-plugin.xml
