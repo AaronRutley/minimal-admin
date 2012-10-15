@@ -205,7 +205,6 @@ class Minimal_Admin_Plugin {
                 echo "<label for='$type'>{$messages[$type]}</label></p>";
             }
             ?>
-            <br/><br/>
 
             <p><input class="button button-primary" type="submit" name="submit" id="submit"
                       value="<?php esc_attr_e('Save Changes', 'minimal-admin'); ?>"/></p>
