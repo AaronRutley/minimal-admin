@@ -5,7 +5,7 @@ Plugin URI: http://www.minimaladmin.com/
 Description: Very simple plugin to hide non essential wp-admin functionality.
 Version: 1.0.
 Author: Aaron Rutley
-Author URI: http://www.aaronrutley.com/
+Author URI: http://www.aaronrutley.com/ 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
