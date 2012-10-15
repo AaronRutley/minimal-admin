@@ -140,79 +140,80 @@ class Minimal_Admin_Plugin {
     // options page
     function min_admin_plugin_menu() {
         add_options_page(
-            __( 'Minimal Admin', 'minimal-admin' ),
-            __( 'Minimal Admin', 'minimal-admin' ),
+            'Minimal Admin Settings',
+            'Minimal Admin',
             'update_core',
             'minimal-admin',
-            'min_admin_settings'
+            array(&$this, 'min_admin_settings')
         );
+    }
+
+    // save settings
+    function min_admin_save_settings() {
+        $types = array('hide_posts', 'hide_screen_options');
+        $options = get_option('minimal-admin');
+
+        foreach ($types as $type) {
+            if (!empty($_REQUEST[$type]))
+                $options[$type] = true;
+            else
+                $options[$type] = false;
+        }
+        update_option('minimal-admin', $options);
+    }
+
+    // settings page
+    function min_admin_settings()
+    {
+        if (!current_user_can('update_core'))
+            wp_die(__('You do not have sufficient permissions to access this page.', 'minimal-admin'));
+
+        $message = '';
+        if (!empty($_REQUEST['submit'])) {
+            check_admin_referer('minimal-admin-settings');
+
+            $this->min_admin_save_settings();
+            $message = __('Settings updated', 'minimal-admin');
+        }
+        $options = get_option('minimal-admin');
+        $messages = array(
+            'hide_posts' => __('Hide Posts from the wp-admin menu', 'minimal-admin'),
+            'hide_screen_options' => __('Hide screen options tab, help tab and the post filtering bar', 'minimal-admin')
+        );
+        ?>
+    <div class="wrap">
+        <?php screen_icon('options-general'); ?>
+        <h2><?php _e('Minimal Admin', 'minimal-admin'); ?></h2>
+        <?php
+        if (!empty($message)) {
+            ?>
+            <div class="updated">
+                <p><?php echo $message; ?></p>
+            </div>
+            <?php
+        }
+        ?>
+        <form method="post">
+            <?php wp_nonce_field('minimal-admin-settings'); ?>
+            <?php
+            foreach ($options as $type => $enabled) {
+                $checked = '';
+                if ($enabled)
+                    $checked = ' checked="checked"';
+
+                echo "<p><input type='checkbox' id='$type' name='$type' value='1'$checked>";
+                echo "<label for='$type'>{$messages[$type]}</label></p>";
+            }
+            ?>
+            <br/><br/>
+
+            <p><input class="button button-primary" type="submit" name="submit" id="submit"
+                      value="<?php esc_attr_e('Save Changes', 'minimal-admin'); ?>"/></p>
+        </form>
+    </div>
+    <?php
     }
 
 }
 
 $minimal_admin = new Minimal_Admin_Plugin();
-
-// save settings
-function min_admin_save_settings() {
-    $types = array('hide_posts', 'hide_screen_options');
-    $options = get_option('minimal-admin');
-
-    foreach ($types as $type) {
-        if (!empty($_REQUEST[$type]))
-            $options[$type] = true;
-        else
-            $options[$type] = false;
-    }
-    update_option('minimal-admin', $options);
-}
-
-function min_admin_settings()
-{
-    if (!current_user_can('update_core'))
-        wp_die(__('You do not have sufficient permissions to access this page.', 'minimal-admin'));
-
-    $message = '';
-    if (!empty($_REQUEST['submit'])) {
-        check_admin_referer('minimal-admin-settings');
-
-        min_admin_save_settings();
-        $message = __('Settings updated', 'minimal-admin');
-    }
-    $options = get_option('minimal-admin');
-    $messages = array(
-        'hide_posts' => __('Hide Posts from the wp-admin menu', 'minimal-admin'),
-        'hide_screen_options' => __('Hide screen options tab, help tab and the post filtering bar', 'minimal-admin')
-    );
-    ?>
-<div class="wrap">
-    <?php screen_icon('options-general'); ?>
-    <h2><?php _e('Minimal Admin', 'minimal-admin'); ?></h2>
-    <?php
-    if (!empty($message)) {
-        ?>
-        <div class="updated">
-            <p><?php echo $message; ?></p>
-        </div>
-        <?php
-    }
-    ?>
-    <form method="post">
-        <?php wp_nonce_field('minimal-admin-settings'); ?>
-        <?php
-        foreach ($options as $type => $enabled) {
-            $checked = '';
-            if ($enabled)
-                $checked = ' checked="checked"';
-
-            echo "<p><input type='checkbox' id='$type' name='$type' value='1'$checked>";
-            echo "<label for='$type'>{$messages[$type]}</label></p>";
-        }
-        ?>
-        <br/><br/>
-
-        <p><input class="button button-primary" type="submit" name="submit" id="submit"
-                  value="<?php esc_attr_e('Save Changes', 'minimal-admin'); ?>"/></p>
-    </form>
-</div>
-<?php
-}
