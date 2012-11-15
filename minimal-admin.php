@@ -115,7 +115,7 @@ class Minimal_Admin_Plugin {
 	// hide dashboard by redirecting user to 'all pages'
 	function hide_dashboard ( ) {
 		if ( preg_match( '#wp-admin/?( index.php )?$#', $_SERVER['REQUEST_URI'] ) ) {
-			wp_redirect( get_option( 'siteurl' ) . '/wp-admin/edit.php?post_type=page' );
+			wp_redirect( admin_url( 'edit.php?post_type=page' ) );
 		}
 	}
 
