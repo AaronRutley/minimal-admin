@@ -1,0 +1,152 @@
+/* Clean up WP Admin wih these Styles */
+#wp-admin-bar-comments,
+#wp-admin-bar-new-content,
+#wp-admin-bar-wpseo-menu,
+#wpfooter,
+#collapse-menu,
+.column-wpseo-score,
+.column-wpseo-title,
+.column-wpseo-metadesc,
+.column-wpseo-focuskw,
+.menu-icon-dashboard,
+.wp-menu-separator,
+#wpadminbar li#wp-admin-bar-wp-logo.hover>.ab-sub-wrapper,
+li#wp-admin-bar-site-name.menupop .ab-sub-wrapper,
+.wp-list-table.widefat tfoot,
+.search-box,
+span.inline {
+	display: none;
+}
+
+/* Posts, Pages and Custom Post Types */
+.wp-list-table.widefat th#title {  
+	display:block; 
+	visibility: visible; 
+	width: 100% !important;
+}
+
+.wp-list-table.widefat th.check-column,
+.wp-list-table.widefat .locked-info { 
+	display: none;
+}
+
+.wp-list-table.widefat td.page-title { 
+	visibility: visible;
+	padding: 0;
+	height: 30px;
+	overflow: hidden;
+	display:block;
+	width: 100% !important;
+}
+
+.wp-list-table.widefat td.page-title strong { 
+	margin-top: 0;
+	padding-left: 10px;
+	line-height: 30px;
+	display: inline-block;
+}
+
+.wp-list-table.widefat.posts .colspanchange,
+.wp-list-table.widefat.pages .colspanchange { 
+	visibility: visible;
+	padding: 0 0 0 10px;
+	height: 30px;
+	line-height: 30px;
+	overflow: hidden;
+	display:inline-block;
+	width: 100% !important;
+}
+
+.wp-list-table.widefat.posts tr:hover .row-actions,
+.wp-list-table.widefat.pages tr:hover .row-actions { 
+	padding: 0;
+	margin:0; 
+	display: inline-block; 
+	float:right; 
+	visibility: visible; 
+	margin-top: -30px; 
+	line-height: 25px; 
+	padding-right:10px; 
+}
+
+/* Table Navigation on all Post Types */            
+.tablenav,
+.tablenav .actions { 
+	display: none;
+}
+.tablenav.bottom {  
+	display: block;
+}
+
+/* Plugin page */
+.wp-list-table.widefat.plugins th#name {  
+	display:block; 
+	visibility: visible;
+}
+
+.wp-list-table.widefat.plugins .column-description {
+	display: none;
+}
+
+.wp-list-table.widefat.plugins td.plugin-title { 
+	visibility: visible;
+	padding: 0; 
+	height: 30px;
+	overflow: hidden;
+	width: 100% !important;
+}
+
+.wp-list-table.widefat.plugins td.plugin-title strong { 
+	margin-top: 0; 
+	padding-left: 10px; 
+	line-height: 30px; 
+	display: inline; 
+	float: left;
+}
+/* include fix for 3.7 */
+.wp-list-table.widefat.plugins .row-actions-visible,
+.wp-list-table.widefat.plugins .row-actions.visible { 
+	display: inline;
+	float:right;
+	visibility: visible;
+	line-height: 30px;
+	padding: 0;
+}
+
+/* Advanced Custom Fields page */
+#acf-col-left .tablenav.bottom,
+#acf-cols .column-fields {  
+	display: none;
+}
+#acf-cols #title,
+#acf-cols .title { 
+	display:block; 
+	width:auto;
+}
+
+/* Simple Page Ordering   */
+.wp-list-table .ui-sortable-placeholder { 
+	height: 30px !important;
+	background: #e5e5e5;
+}
+
+.wp-list-table.widefat.pages tr.iedit { 
+	width: 100% !important;
+	height: 32px !important;
+  	display: block;
+}
+
+/* Admin Collapse Sub Pages */
+.wp-list-table.widefat.pages td.page-title strong span.expand_link a {
+	margin-top: 6px; 
+	line-height: 16px; 
+}
+
+/* MP6 */
+#wpadminbar #wp-admin-bar-site-name > .ab-item:before {
+	content: none;
+}
+#wpadminbar ul#wp-admin-bar-root-default>li {
+	margin:0;
+}
+/* end of minimal admin css */
