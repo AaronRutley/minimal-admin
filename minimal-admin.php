@@ -3,7 +3,7 @@
 Plugin Name: Minimal Admin 
 Plugin URI: http://www.minimaladmin.com/
 Description: Very simple plugin to hide non essential wp-admin functionality.
-Version: 2.0
+Version: 2.0.1
 Author: Aaron Rutley
 Author URI: http://www.aaronrutley.com/ 
 License: GPLv2 or later
@@ -130,7 +130,7 @@ class Minimal_Admin_Plugin {
 
 	// move gravity forms to the bottom of the menu 
 	function ma_gform_menu_position($position) {
-		return 100;
+		return 111;
 	}
 
 	// site link target blank
