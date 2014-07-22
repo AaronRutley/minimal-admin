@@ -19,18 +19,18 @@ span.inline {
 }
 
 /* Posts, Pages and Custom Post Types */
-.wp-list-table.widefat th#title {  
-	display:block; 
-	visibility: visible; 
+.wp-list-table.widefat th#title {
+	display:block;
+	visibility: visible;
 	width: 100% !important;
 }
 
 .wp-list-table.widefat th.check-column,
-.wp-list-table.widefat .locked-info { 
+.wp-list-table.widefat .locked-info {
 	display: none;
 }
 
-.wp-list-table.widefat td.page-title { 
+.wp-list-table.widefat td.page-title {
 	visibility: visible;
 	padding: 0;
 	height: 30px;
@@ -39,7 +39,7 @@ span.inline {
 	width: 100% !important;
 }
 
-.wp-list-table.widefat td.page-title strong { 
+.wp-list-table.widefat td.page-title strong {
 	margin-top: 0;
 	padding-left: 10px;
 	line-height: 30px;
@@ -47,7 +47,7 @@ span.inline {
 }
 
 .wp-list-table.widefat.posts .colspanchange,
-.wp-list-table.widefat.pages .colspanchange { 
+.wp-list-table.widefat.pages .colspanchange {
 	visibility: visible;
 	padding: 0 0 0 10px;
 	height: 30px;
@@ -57,30 +57,34 @@ span.inline {
 	width: 100% !important;
 }
 
-.wp-list-table.widefat.posts tr:hover .row-actions,
-.wp-list-table.widefat.pages tr:hover .row-actions { 
+.wp-list-table.widefat.posts .row-actions,
+.wp-list-table.widefat.pages .row-actions {
 	padding: 0;
-	margin:0; 
-	display: inline-block; 
-	float:right; 
-	visibility: visible; 
-	margin-top: -30px; 
-	line-height: 25px; 
-	padding-right:10px; 
+	margin:0;
+	display: inline-block;
+	float:right;
+	visibility: hidden;
+	line-height: 30px;
+	padding-right:10px;
 }
 
-/* Table Navigation on all Post Types */            
+.wp-list-table.widefat.posts tr:hover .row-actions,
+.wp-list-table.widefat.pages tr:hover .row-actions {
+	visibility: visible;
+}
+
+/* Table Navigation on all Post Types */
 .tablenav,
-.tablenav .actions { 
+.tablenav .actions {
 	display: none;
 }
-.tablenav.bottom {  
+.tablenav.bottom {
 	display: block;
 }
 
 /* Plugin page */
-.wp-list-table.widefat.plugins th#name {  
-	display:block; 
+.wp-list-table.widefat.plugins th#name {
+	display:block;
 	visibility: visible;
 }
 
@@ -88,24 +92,24 @@ span.inline {
 	display: none;
 }
 
-.wp-list-table.widefat.plugins td.plugin-title { 
+.wp-list-table.widefat.plugins td.plugin-title {
 	visibility: visible;
-	padding: 0; 
+	padding: 0;
 	height: 30px;
 	overflow: hidden;
 	width: 100% !important;
 }
 
-.wp-list-table.widefat.plugins td.plugin-title strong { 
-	margin-top: 0; 
-	padding-left: 10px; 
-	line-height: 30px; 
-	display: inline; 
+.wp-list-table.widefat.plugins td.plugin-title strong {
+	margin-top: 0;
+	padding-left: 10px;
+	line-height: 30px;
+	display: inline;
 	float: left;
 }
 /* include fix for 3.7 */
 .wp-list-table.widefat.plugins .row-actions-visible,
-.wp-list-table.widefat.plugins .row-actions.visible { 
+.wp-list-table.widefat.plugins .row-actions.visible {
 	display: inline;
 	float:right;
 	visibility: visible;
@@ -115,22 +119,23 @@ span.inline {
 
 /* Advanced Custom Fields page */
 #acf-col-left .tablenav.bottom,
-#acf-cols .column-fields {  
+.column-fields,
+#fields {
 	display: none;
 }
 #acf-cols #title,
-#acf-cols .title { 
-	display:block; 
+#acf-cols .title {
+	display:block;
 	width:auto;
 }
 
 /* Simple Page Ordering   */
-.wp-list-table .ui-sortable-placeholder { 
+.wp-list-table .ui-sortable-placeholder {
 	height: 30px !important;
 	background: #e5e5e5;
 }
 
-.wp-list-table.widefat.pages tr.iedit { 
+.wp-list-table.widefat.pages tr.iedit {
 	width: 100% !important;
 	height: 32px !important;
   	display: block;
@@ -138,15 +143,25 @@ span.inline {
 
 /* Admin Collapse Sub Pages */
 .wp-list-table.widefat.pages td.page-title strong span.expand_link a {
-	margin-top: 6px; 
-	line-height: 16px; 
+	margin-top: 6px;
+	line-height: 16px;
 }
 
-/* MP6 */
-#wpadminbar #wp-admin-bar-site-name > .ab-item:before {
+/* MP6 and WP 4.0 Tweaks */
+.wp-admin #wpadminbar #wp-admin-bar-site-name > .ab-item:before {
 	content: none;
 }
+
+#wpadminbar #wp-admin-bar-my-sites>.ab-item:before,
+#wpadminbar #wp-admin-bar-site-name>.ab-item:before {
+	content: none;
+}
+
 #wpadminbar ul#wp-admin-bar-root-default>li {
 	margin:0;
+}
+
+.plugin-install-php .tablenav {
+	display: block;
 }
 /* end of minimal admin css */
