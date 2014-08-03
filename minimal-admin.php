@@ -188,7 +188,7 @@ class Minimal_Admin_Plugin {
 			check_admin_referer('minimal-admin-settings');
 
 			$this->min_admin_save_settings();
-			$message = __('Settings updated', 'minimal-admin');
+			$message = __('Changes saved.', 'minimal-admin');
 		}
 		$options = get_option('minimal-admin');
 		$messages = array(
@@ -222,7 +222,7 @@ class Minimal_Admin_Plugin {
 			?>
 
 			<p><input class="button button-primary" type="submit" name="submit" id="submit"
-					  value="<?php esc_attr_e('Save Changes', 'minimal-admin'); ?>"/></p>
+					  value="<?php esc_attr_e('Save all changes', 'minimal-admin'); ?>"/></p>
 		</form>
 	</div>
 	<?php
