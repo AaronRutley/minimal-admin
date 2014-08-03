@@ -1,0 +1,42 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Minimal Admin\n"
+"POT-Creation-Date: 2014-08-03 21:33+1000\n"
+"PO-Revision-Date: 2014-08-03 21:34+1000\n"
+"Last-Translator: Aaron Rutley <aaronrutley@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;esc_attr_e;__\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: minimal-admin.php:149
+msgid "Settings"
+msgstr ""
+
+#: minimal-admin.php:184
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: minimal-admin.php:191
+msgid "Settings updated"
+msgstr ""
+
+#: minimal-admin.php:195
+msgid " Hide Posts from the wp-admin menu"
+msgstr ""
+
+#: minimal-admin.php:196
+msgid " Hide screen options tab and help tab"
+msgstr ""
+
+#: minimal-admin.php:201
+msgid "Minimal Admin"
+msgstr ""
+
+#: minimal-admin.php:225
+msgid "Save Changes"
+msgstr ""
