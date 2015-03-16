@@ -14,7 +14,7 @@ This plugin is intended for select client projects where the client is an editor
 
 = Features include: =
 * Overwrites a range of default wp-admin CSS with minimal styles
-* Hides the dashboard and directs users to the edit pages screen
+* Hides the dashboard and directs admins or editors to the edit pages screen
 * Hides non essential menu items & separators
 * Hides the WordPress admin bar (only front end)
 * Site link in the admin bar now opens in new window
@@ -26,7 +26,7 @@ This plugin is intended for select client projects where the client is an editor
 = Works well with the following plugins: =
 * WordPress SEO: Hides SEO columns from the edit page / edit posts screens
 * Gravity Forms: Grants editor (client) access to manage Gravity Forms
-* Advanced Custom Fields : Minimal field group listings
+* Advanced Custom Fields Pro : Minimal field group listings
 * Simple Page Ordering
 * Admin Collapse Sub Pages
 
@@ -43,10 +43,11 @@ Activate the plugin via the plugins menu
 
 = 2.1.0 =
 * Minor CSS tweaks for WordPress v4.0+ compatibility
-* Minor CSS tweaks for ACF v5.0 Pro compatibility
+* Minor CSS tweaks for ACF v5.0+ Pro compatibility
 * Minor CSS bug fix for Firefox on lists of pages
 * Minor CSS tweaks for WordPress multisite
-* Fix for redirection error for subscribers or  authors
+* Remove howdy from admin menu bar
+* Fix for redirection error for some user roles
 
 = 2.0.1 =
 * Bug fix for Gravity Forms / Backup Buddy menu conflict
