@@ -2,7 +2,7 @@
 Contributors: AaronRutley
 Tags: admin,minimal,dashboard,cms
 Requires at least: 3.4.2
-Tested up to: 4.0.0
+Tested up to: 4.2.0
 Stable tag: 2.1.0
 License: GPL2+
 
@@ -42,10 +42,11 @@ Activate the plugin via the plugins menu
 == Changelog ==
 
 = 2.1.0 =
-* Minor CSS tweaks for WordPress v4.0 compatibility
+* Minor CSS tweaks for WordPress v4.0+ compatibility
 * Minor CSS tweaks for ACF v5.0 Pro compatibility
 * Minor CSS bug fix for Firefox on lists of pages
 * Minor CSS tweaks for WordPress multisite
+* Fix for redirection error for subscribers or  authors
 
 = 2.0.1 =
 * Bug fix for Gravity Forms / Backup Buddy menu conflict

@@ -48,6 +48,7 @@ class Minimal_Admin_Plugin {
 
 		add_filter('gform_menu_position', array(&$this, 'ma_gform_menu_position'));
 		add_filter('plugin_action_links', array(&$this, 'add_settings_link'), 10, 2);
+		add_filter('admin_bar_menu', array(&$this, 'ma_remove_howdy') ,25);
 
 		add_action('admin_menu', array(&$this, 'min_admin_plugin_menu') );
 
@@ -109,8 +110,10 @@ class Minimal_Admin_Plugin {
 
 	// hide dashboard by redirecting user to 'all pages'
 	function hide_dashboard ( ) {
-		if ( preg_match( '#wp-admin/?( index.php )?$#', $_SERVER['REQUEST_URI'] ) ) {
-			wp_redirect( admin_url( 'edit.php?post_type=page' ) );
+		if ( current_user_can('edit_pages') ) {
+			if ( preg_match( '#wp-admin/?( index.php )?$#', $_SERVER['REQUEST_URI'] ) ) {
+				wp_redirect( admin_url( 'edit.php?post_type=page' ) );
+			}
 		}
 	}
 
@@ -139,6 +142,16 @@ class Minimal_Admin_Plugin {
 		jQuery(document).ready(function(){jQuery('#wpadminbar .quicklinks  ul  li#wp-admin-bar-site-name  a').attr('target','_blank');});
 	</script>
 	<?php }
+
+	// remove howdy
+	function ma_remove_howdy( $wp_admin_bar ) {
+	    $my_account=$wp_admin_bar->get_node('my-account');
+	    $newtitle = str_replace( 'Howdy,', '', $my_account->title );
+	    $wp_admin_bar->add_node( array(
+	        'id' => 'my-account',
+	        'title' => $newtitle,
+	    ) );
+	}
 
 	// add minimal admin settings link to plugin summary page
 	function add_settings_link($links, $file) {
