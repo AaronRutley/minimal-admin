@@ -1,0 +1,25 @@
+/* Plugin page */
+.wp-list-table.widefat.plugins th#name {
+	display:block;
+	visibility: visible;
+}
+
+.wp-list-table.widefat.plugins .column-description {
+	display: none;
+}
+
+.wp-list-table.widefat.plugins td.plugin-title {
+	visibility: visible;
+	padding: 0;
+	height: 30px;
+	overflow: hidden;
+	width: 100% !important;
+}
+
+.wp-list-table.widefat.plugins td.plugin-title strong {
+	margin-top: 0;
+	padding-left: 10px;
+	line-height: 30px;
+	display: inline;
+	float: left;
+}

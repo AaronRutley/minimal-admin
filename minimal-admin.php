@@ -64,7 +64,7 @@ class Minimal_Admin_Plugin {
 
 	// clean up WordPress dashboard with this CSS
 	function custom_admin_styles(){
-		wp_register_style('minimal-admin-styles',WP_PLUGIN_URL.'/minimal-admin/minimal-admin.css');
+		wp_register_style('minimal-admin-styles',WP_PLUGIN_URL.'/minimal-admin/assets/css/minimal-admin.css');
 		wp_enqueue_style('minimal-admin-styles');
 	}
 

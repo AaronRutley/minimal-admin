@@ -1,0 +1,68 @@
+
+/* Advanced Custom Fields page */
+#acf-col-left .tablenav.bottom,
+.column-fields,
+.column-acf-fg-count,
+#fields {
+	display: none;
+}
+#acf-cols #title,
+#acf-cols .title {
+	display:block;
+	width:auto;
+}
+
+
+th#acf-fg-status {
+	display: none;
+}
+
+#acf-field-group-wrap .wp-list-table.widefat td.page-title {
+	display: table-cell;
+}
+#acf-field-group-wrap .wp-list-table td.column-acf-fg-status {
+	width:10%;
+	display: table-cell;
+
+}
+// ACF - th, quick fix to align headings
+th.sortable a, th.sorted a {
+	padding-top:9px;
+}
+
+
+/* Simple Page Ordering   */
+.wp-list-table .ui-sortable-placeholder {
+	height: 30px !important;
+	background: #e5e5e5;
+}
+
+.wp-list-table.widefat.pages tr.iedit {
+	width: 100% !important;
+	height: 32px !important;
+  	display: block;
+}
+
+/* Admin Collapse Sub Pages */
+.wp-list-table.widefat.pages td.page-title strong span.expand_link a {
+	margin-top: 6px;
+	line-height: 16px;
+}
+
+/* MP6 and WP 4.0 Tweaks */
+.wp-admin #wpadminbar #wp-admin-bar-site-name > .ab-item:before {
+	content: none;
+}
+
+#wpadminbar #wp-admin-bar-my-sites>.ab-item:before,
+#wpadminbar #wp-admin-bar-site-name>.ab-item:before {
+	content: none;
+}
+
+#wpadminbar ul#wp-admin-bar-root-default>li {
+	margin:0;
+}
+
+.plugin-install-php .tablenav {
+	display: block;
+}

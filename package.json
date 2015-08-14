@@ -1,0 +1,19 @@
+{
+  "name": "minimal-admin",
+  "version": "2.2.0",
+  "description": "",
+  "license": "GPL2+",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AaronRutley/minimal-admin.git"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-livereload": "^3.8.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.5.2"
+  }
+}

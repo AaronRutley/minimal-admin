@@ -2,8 +2,8 @@
 Contributors: AaronRutley
 Tags: admin,minimal,dashboard,cms
 Requires at least: 3.4.2
-Tested up to: 4.2.0
-Stable tag: 2.1.0
+Tested up to: 4.3.0
+Stable tag: 2.2.0
 License: GPL2+
 
 Very simple plugin to hide non essential wp-admin functionality
@@ -14,7 +14,7 @@ This plugin is intended for select client projects where the client is an editor
 
 = Features include: =
 * Overwrites a range of default wp-admin CSS with minimal styles
-* Hides the dashboard and directs admins or editors to the edit pages screen
+* Hides the dashboard and directs admin's or editor users to the edit pages screen
 * Hides non essential menu items & separators
 * Hides the WordPress admin bar (only front end)
 * Site link in the admin bar now opens in new window
@@ -33,13 +33,16 @@ This plugin is intended for select client projects where the client is an editor
 == Installation ==
 
 Upload Minimal Admin to /wp-content/plugins/
-Activate the plugin via the plugins menu
+Activate the Plugin via the plugins menu
 
 == Screenshots ==
 1. Before (when logged in as an editor / client)
 2. After (when logged in an an editor / client)
 
 == Changelog ==
+
+= 2.2.0 =
+*
 
 = 2.1.0 =
 * Minor CSS tweaks for WordPress v4.0+ compatibility

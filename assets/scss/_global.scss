@@ -1,0 +1,68 @@
+// Global Styles - applies across the entire admin panel
+
+// Remove padding from top of main nav
+#adminmenu {
+	margin-top:0
+}
+
+// Style Admin bar color
+#wpadminbar {
+	background:$primary-color--dark;
+}
+
+// Admin Bar - Clean up top level items
+#wp-admin-bar-comments,
+#wp-admin-bar-new-content,
+#wp-admin-bar-wpseo-menu,
+#wp-admin-bar-all-in-one-seo-pack-pro,
+#wp-admin-bar-wp-rocket,
+
+// Admin Bar - Remove Drop down nav from W
+#wpadminbar li#wp-admin-bar-wp-logo.hover>.ab-sub-wrapper,
+
+// Admin Bar - Remove drop down from site name (as it now links to the site)
+li#wp-admin-bar-site-name.menupop .ab-sub-wrapper,
+
+// Sidebar Cleanup
+#collapse-menu,
+.wp-menu-separator,
+
+// WP SEO - legacy
+.column-wpseo-score,
+.column-wpseo-title,
+.column-wpseo-metadesc,
+.column-wpseo-focuskw,
+
+// WP SEO Columns
+.column-wpseo-score,
+
+// All in one SEO Columns
+.column-seotitle,
+.column-seodesc,
+.column-seokeywords,
+
+// Hide Dashboard Link
+.menu-icon-dashboard,
+
+// Hide WP Footer
+#wpfooter,
+
+// Tables - remove footer bar (repeat of table header)
+.wp-list-table.widefat tfoot,
+
+// Hide Internal Search
+.search-box,
+
+// Tables - Hide inline tooltips / links
+span.inline,
+
+// Tables - Hide check column (legacy and new)
+.wp-list-table.widefat th.check-column,
+.wp-list-table.widefat td.check-column,
+
+// Tables - Hide locked info
+.wp-list-table.widefat .locked-info
+
+{
+	display: none;
+}
