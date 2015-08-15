@@ -1,5 +1,4 @@
-
-/* Advanced Custom Fields page */
+// Advanced Custom Fields - Table Styles
 #acf-col-left .tablenav.bottom,
 .column-fields,
 .column-acf-fg-count,
@@ -12,7 +11,7 @@
 	width:auto;
 }
 
-
+// ACF sync status
 th#acf-fg-status {
 	display: none;
 }
@@ -31,7 +30,7 @@ th.sortable a, th.sorted a {
 }
 
 
-/* Simple Page Ordering   */
+// Simple Page Ordering - Styles
 .wp-list-table .ui-sortable-placeholder {
 	height: 30px !important;
 	background: #e5e5e5;
@@ -43,7 +42,7 @@ th.sortable a, th.sorted a {
   	display: block;
 }
 
-/* Admin Collapse Sub Pages */
+// Admin Collapse Sub Pages - Styles
 .wp-list-table.widefat.pages td.page-title strong span.expand_link a {
 	margin-top: 6px;
 	line-height: 16px;
@@ -61,8 +60,4 @@ th.sortable a, th.sorted a {
 
 #wpadminbar ul#wp-admin-bar-root-default>li {
 	margin:0;
-}
-
-.plugin-install-php .tablenav {
-	display: block;
 }

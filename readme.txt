@@ -27,6 +27,7 @@ This plugin is intended for select client projects where the client is an editor
 * WordPress SEO: Hides SEO columns from the edit page / edit posts screens
 * Gravity Forms: Grants editor (client) access to manage Gravity Forms
 * Advanced Custom Fields Pro : Minimal field group listings
+* All in One SEO Pack
 * Simple Page Ordering
 * Admin Collapse Sub Pages
 
@@ -42,7 +43,12 @@ Activate the Plugin via the plugins menu
 == Changelog ==
 
 = 2.2.0 =
-*
+* Compatibility with WP Rocket
+* Compatibility with All in One SEO Pack Pro
+* Minor CSS tweaks for WP 4.3 compatibility
+* Minor CSS tweaks for ACF 5.2.9 compatibility
+* Minor CSS tweaks to keep Plugins list screen minimal
+* Tested against wptest.io sample data
 
 = 2.1.0 =
 * Minor CSS tweaks for WordPress v4.0+ compatibility
@@ -56,7 +62,7 @@ Activate the Plugin via the plugins menu
 * Bug fix for Gravity Forms / Backup Buddy menu conflict
 
 = 2.0.0 =
-* Major Update which includes compatability with WordPress 3.7, MP6 & various other plugins.
+* Major Update which includes compatibility with WordPress 3.7, MP6 & various other plugins.
 
 = 1.0.1 =
 * Original Commit

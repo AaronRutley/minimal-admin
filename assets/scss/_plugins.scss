@@ -23,3 +23,53 @@
 	display: inline;
 	float: left;
 }
+
+// Plugin update message - remove red background
+.plugins .active.update td,
+.plugins .active.update th,
+tr.active.update+tr.plugin-update-tr .plugin-update {
+	background-color: #F0F5F7;
+}
+
+tr.active+tr.plugin-update-tr:not(.updated) .plugin-update .update-message,
+tr.active+tr.plugin-update-tr:not(.updated) .plugin-update .update-message {
+	background-color:#E9EEF0;
+}
+
+// Remove margin from update message
+.plugin-update-tr .update-message {
+	margin:0;
+}
+.plugin-install-php .tablenav {
+	display: block;
+}
+
+tr.inactive td.plugin-title.column-primary {
+	background-color: #FFF;
+}
+
+// remove shadow
+.plugin-install #the-list td,
+.plugins .active td,
+.plugins .active th,
+.plugins .inactive td,
+.plugins .inactive th,
+.upgrade .plugins td,
+.upgrade .plugins th {
+	-webkit-box-shadow:none;
+	box-shadow:none;
+	border-bottom:1px solid #e1e1e1;
+}
+
+.plugins tr.active+tr.inactive td,
+.plugins tr.active+tr.inactive th,
+.plugins tr.active.plugin-update-tr+tr.inactive td,
+.plugins tr.active.plugin-update-tr+tr.inactive th {
+	border-top:none;
+	-webkit-box-shadow:none;
+	box-shadow:none;
+}
+
+#adminmenu .awaiting-mod, #adminmenu .update-plugins {
+	background-color:#0073aa;
+}

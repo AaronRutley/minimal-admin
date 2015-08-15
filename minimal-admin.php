@@ -3,14 +3,14 @@
 Plugin Name: Minimal Admin
 Plugin URI: http://www.minimaladmin.com/
 Description: Very simple plugin to hide non essential wp-admin functionality.
-Version: 2.1.0
+Version: 2.2.0
 Author: Aaron Rutley
 Author URI: http://www.aaronrutley.com/
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-/*  Copyright 2013 Aaron Rutley
+/*  Copyright 2015 Aaron Rutley
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -117,13 +117,13 @@ class Minimal_Admin_Plugin {
 		}
 	}
 
-	// set user meta for edit post per page
+	// set user meta to show 100 posts (or pages) per edit screen
 	function my_edit_post_per_page( $per_page, $post_type ) {
-			if ( $post_type == 'page' || $post_type == 'post' ) {
-				return 200;
-			}
-			return $per_page;
+		if ( $post_type == 'page' || $post_type == 'post' ) {
+			return 100;
 		}
+		return $per_page;
+	}
 
 	// grant editor access to gravity forms
 	function add_grav_forms( ){
@@ -165,7 +165,7 @@ class Minimal_Admin_Plugin {
 		return $links;
 	}
 
-	/// options page
+	/// options page config
 	function min_admin_plugin_menu() {
 		add_options_page(
 			'Minimal Admin Settings',
@@ -190,7 +190,7 @@ class Minimal_Admin_Plugin {
 		update_option('minimal-admin', $options);
 	}
 
-	// minimal adminsettings page
+	// create minimal admin settings page
 	function min_admin_settings()
 	{
 		if (!current_user_can('update_core'))

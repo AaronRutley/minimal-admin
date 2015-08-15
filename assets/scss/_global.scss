@@ -16,6 +16,7 @@
 #wp-admin-bar-wpseo-menu,
 #wp-admin-bar-all-in-one-seo-pack-pro,
 #wp-admin-bar-wp-rocket,
+#wp-admin-bar-updates,
 
 // Admin Bar - Remove Drop down nav from W
 #wpadminbar li#wp-admin-bar-wp-logo.hover>.ab-sub-wrapper,
@@ -62,7 +63,6 @@ span.inline,
 
 // Tables - Hide locked info
 .wp-list-table.widefat .locked-info
-
 {
 	display: none;
 }
