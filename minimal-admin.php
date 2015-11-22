@@ -3,7 +3,7 @@
 Plugin Name: Minimal Admin
 Plugin URI: http://www.minimaladmin.com/
 Description: Very simple plugin to hide non essential wp-admin functionality.
-Version: 2.2.0
+Version: 2.3.0
 Author: Aaron Rutley
 Author URI: http://www.aaronrutley.com/
 License: GPLv2 or later
@@ -37,7 +37,8 @@ class Minimal_Admin_Plugin {
 		add_action('admin_init', array(&$this, 'custom_admin_styles'));
 		add_action('admin_head', array(&$this, 'optional_admin_styles'));
 		add_action('admin_head', array(&$this, 'adminbar_target_blank'));
-
+		add_action('admin_init', array(&$this, 'check_local_dev'));
+		add_action('wp_before_admin_bar_render', array(&$this, 'ma_display_local_dev_links'));
 
 		add_filter('manage_pages_columns', array(&$this, 'custom_columns'));
 		add_filter('manage_posts_columns', array(&$this, 'custom_columns'));
@@ -66,6 +67,65 @@ class Minimal_Admin_Plugin {
 	function custom_admin_styles(){
 		wp_register_style('minimal-admin-styles',WP_PLUGIN_URL.'/minimal-admin/assets/css/minimal-admin.css');
 		wp_enqueue_style('minimal-admin-styles');
+	}
+
+
+	// function to check if we're on the local dev site
+	function check_local_dev(){
+
+		// if local URL is defined
+		if (defined('LOCAL_URL')) {
+
+			// define current site url
+			$current_site_url = get_site_url();
+
+			// if current site url and local url match
+			if ($current_site_url == LOCAL_URL){
+
+				// call the local dev css function on the admin_head action
+				add_action('admin_head', array(&$this, 'local_dev_css'));
+
+			}
+
+		}
+		
+	}
+
+	// Local dev CSS to style admin bar
+	function local_dev_css() { ?>
+		<style>
+		#wpadminbar {background:#005781 !important;}#adminmenu{margin-top:0 !important;}
+		#wpadminbar .ab-top-menu>li.hover>.ab-item, #wpadminbar .ab-top-menu>li:hover>.ab-item, #wpadminbar .ab-top-menu>li>.ab-item:focus, #wpadminbar.nojq .quicklinks .ab-top-menu>li>.ab-item:focus { background:#0073AA !important; color: #FFF !important;} .ab-sub-wrapper { background:#0073AA !important; }
+		.local-dev__button a img { max-width:20px; max-height:20px; padding:6px 0 !important; display: inline-block;  }
+		#wp-admin-bar-wp-logo-default { padding:10px 0 !important;}
+		</style>
+	<?php
+	}
+
+
+	function ma_display_local_dev_links() {
+
+		// check if we've set some links
+		if (function_exists('minimal_admin_project_links')) {
+
+			// wp admin bar global
+			global $wp_admin_bar;
+
+			// get the links array from a function
+			$minimal_admin_links = minimal_admin_project_links();
+
+			// for each link
+			foreach ($minimal_admin_links as $link) {
+				// add an item to the menu bar
+				$wp_admin_bar->add_menu( array(
+					'parent' => 'wp-logo', // set the parent to the WP logo
+					'id'    => $link[0], // set the id to the name of the link
+					'title' => $link[0], // the the title to the name of the link
+					'href'  => $link[1], // set the href to the url for the link
+					'meta' => array( 'html' => '', 'class' => '', 'onclick' => '', 'target' => '_blank', 'title' => $link[0] )
+				));
+			}
+		}
 	}
 
 	// optional Styles

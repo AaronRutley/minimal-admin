@@ -2,8 +2,8 @@
 Contributors: AaronRutley
 Tags: admin,minimal,dashboard,cms
 Requires at least: 3.4.2
-Tested up to: 4.3.0
-Stable tag: 2.2.0
+Tested up to: 4.4.0
+Stable tag: 2.3.0
 License: GPL2+
 
 Very simple plugin to hide non essential wp-admin functionality
@@ -17,7 +17,9 @@ This plugin is intended for select client projects where the client is an editor
 * Hides the dashboard and directs admin's or editor users to the edit pages screen
 * Hides non essential menu items & separators
 * Hides the WordPress admin bar (only front end)
-* Site link in the admin bar now opens in new window
+* Site link in the admin bar opens in new window
+* Local Development - admin bar colour change
+* Local Development - project quicklinks
 
 = Options to: =
 * Hide Posts from the WordPress menu
@@ -33,14 +35,47 @@ This plugin is intended for select client projects where the client is an editor
 
 == Installation ==
 
-Upload Minimal Admin to /wp-content/plugins/
-Activate the Plugin via the plugins menu
+1. Upload `Minimal Admin` to `/wp-content/plugins/`
+2. Activate the Plugin via the plugins menu
+
+
+== FAQs ==
+
+= How do I enable the quicklinks dropdown ? =
+
+So your project links appear in the quicklinks dropdown under the W icon in the admin bar you need to:
+
+First, define your local URL in wp-config.php or functions.php as this only works on local.
+
+```
+define('LOCAL_URL', 'http://minimaladmin.dev');
+```
+
+Secondly, add a function similar to the following to your theme's functions.php
+
+```
+function minimal_admin_project_links() {
+	$minimal_admin_project_links = array(
+		array("Local","http://localurl.com"),
+		array("Staging","http://stagingurl.com"),
+		array("Trello","http://trellourl.com"),
+		array("Git Repo","http://gitrepourl.com")
+	);
+	return $minimal_admin_project_links;
+}
+```
 
 == Screenshots ==
 1. Before (when logged in as an editor / client)
 2. After (when logged in an an editor / client)
 
 == Changelog ==
+
+= 2.3.0 =
+* Local Development - Project quicklinks feature added
+* Local Development - Admin bar colour change
+* Minor CSS tweaks for WordPress SEO 3.0.3 compatability
+* SVG icons for Admin Collapse Sub Pages
 
 = 2.2.0 =
 * Compatibility with WP Rocket

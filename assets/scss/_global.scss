@@ -18,8 +18,9 @@
 #wp-admin-bar-wp-rocket,
 #wp-admin-bar-updates,
 
-// Admin Bar - Remove Drop down nav from W
-#wpadminbar li#wp-admin-bar-wp-logo.hover>.ab-sub-wrapper,
+// Admin Bar - Remove defalt Drop down nav from W
+#wp-admin-bar-about,
+#wpadminbar .quicklinks .menupop ul.ab-sub-secondary,
 
 // Admin Bar - Remove drop down from site name (as it now links to the site)
 li#wp-admin-bar-site-name.menupop .ab-sub-wrapper,
@@ -27,6 +28,9 @@ li#wp-admin-bar-site-name.menupop .ab-sub-wrapper,
 // Sidebar Cleanup
 #collapse-menu,
 .wp-menu-separator,
+
+// hide the duplciate view page button
+#wp-admin-bar-view,
 
 // WP SEO - legacy
 .column-wpseo-score,
@@ -57,6 +61,13 @@ li#wp-admin-bar-site-name.menupop .ab-sub-wrapper,
 // Tables - Hide inline tooltips / links
 span.inline,
 
+// Tables - links manger
+.wp-list-table .column-categories,
+.wp-list-table .column-rel,
+.wp-list-table .column-visible,
+.wp-list-table .column-rating,
+.wp-list-table .column-url,
+
 // Tables - Hide check column (legacy and new)
 .wp-list-table.widefat th.check-column,
 .wp-list-table.widefat td.check-column,
@@ -65,4 +76,9 @@ span.inline,
 .wp-list-table.widefat .locked-info
 {
 	display: none;
+}
+
+// fix padding on wp logo dropdown
+#wpadminbar #wp-admin-bar-wp-logo-default {
+	padding:0;
 }

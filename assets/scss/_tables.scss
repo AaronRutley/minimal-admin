@@ -1,13 +1,12 @@
 // Tables - on Posts, Pages and Custom Post Types
-
-
 .wp-list-table.widefat th#title {
 	display:inline-block;
 	visibility: visible;
 	width: 100%;
 }
 
-.wp-list-table.widefat td.page-title {
+.wp-list-table.widefat td.page-title,
+.wp-list-table.widefat td.name {
 	visibility: visible;
 	padding: 0;
 	height: 30px;
@@ -16,15 +15,18 @@
 	width: 100%;
 }
 
-.wp-list-table.widefat td.page-title strong {
+.wp-list-table.widefat td.page-title strong,
+.wp-list-table.widefat td.name strong {
 	margin-top: 0;
 	padding-left: 10px;
 	line-height: 30px;
 	display: inline-block;
 }
 
+
 .wp-list-table.widefat.posts .colspanchange,
-.wp-list-table.widefat.pages .colspanchange {
+.wp-list-table.widefat.pages .colspanchange,
+.wp-list-table.widefat.bookmarks .colspanchange  {
 	visibility: visible;
 	padding: 0 0 0 10px;
 	height: 30px;
@@ -35,7 +37,8 @@
 }
 
 .wp-list-table.widefat.posts .row-actions,
-.wp-list-table.widefat.pages .row-actions {
+.wp-list-table.widefat.pages .row-actions,
+.wp-list-table.widefat.bookmarks .row-actions {
 	padding: 0;
 	margin:0;
 	display: inline-block;
@@ -46,7 +49,8 @@
 }
 
 .wp-list-table.widefat.posts tr:hover .row-actions,
-.wp-list-table.widefat.pages tr:hover .row-actions {
+.wp-list-table.widefat.pages tr:hover .row-actions,
+.wp-list-table.widefat.bookmarks tr:hover .row-actions  {
 	visibility: visible;
 }
 
@@ -80,4 +84,14 @@ th.sorted .sorting-indicator {
 // Toggle Row
 .wp-list-table .toggle-row {
 	display: none;
+}
+
+.wp-list-table.widefat.bookmarks  .column-name {
+	position: relative;
+
+}
+.wp-list-table.widefat.bookmarks .row-actions {
+	position: absolute;
+	top:0;
+	right:0;
 }

@@ -48,6 +48,29 @@ th.sortable a, th.sorted a {
 	line-height: 16px;
 }
 
+// plus link
+.expand_link a {
+	border:1px solid rgba(0,0,0,0) !important;
+	//border-radius: 50%;
+	background-image:url(../images/icon--down.svg) !important;
+	background-size:10px 10px !important;
+	background-repeat: no-repeat !important;
+	background-position: center center !important;
+
+	&:hover {
+		background-image:url(../images/icon--down.svg) !important;
+		border:1px solid #e5e5e5 !important;
+	}
+}
+
+// minus link
+.expand_link a.minus {
+	background-image:url(../images/icon--up.svg) !important;
+
+	&:hover {
+		background-image:url(../images/icon--up.svg) !important;
+	}
+}
 /* MP6 and WP 4.0 Tweaks */
 .wp-admin #wpadminbar #wp-admin-bar-site-name > .ab-item:before {
 	content: none;
@@ -60,4 +83,10 @@ th.sortable a, th.sorted a {
 
 #wpadminbar ul#wp-admin-bar-root-default>li {
 	margin:0;
+}
+
+
+// WP SEO
+#major-publishing-actions #wpseo-score {
+	display: none;
 }
