@@ -91,6 +91,65 @@ span.inline,
 .wp-core-ui .button,
 .wp-core-ui .button-secondary,
 .postbox,
-input {
+input[type=text],
+input[type=search],
+input[type=radio],
+input[type=tel],
+input[type=time],
+input[type=url],
+input[type=week],
+input[type=password],
+input[type=checkbox],
+input[type=color],
+input[type=date],
+input[type=datetime],
+input[type=datetime-local],
+input[type=email],
+input[type=month],
+input[type=number],
+select,
+textarea {
 	box-shadow: none !important;
+}
+
+.postbox,
+.notice, div.error, div.updated,
+#menu-management .menu-edit, #menu-settings-column .accordion-container, .comment-ays, .feature-filter, .imgedit-group, .manage-menus, .menu-item-handle, .popular-tags, .stuffbox, .widget-inside, .widget-top, .widgets-holder-wrap, .wp-editor-container, p.popular-tags, table.widefat {
+	box-shadow: none !important;
+}
+// remove border radius on all buttons
+.wp-core-ui .button,
+.wp-core-ui .button-primary,
+.wp-core-ui .button-secondary,
+.wrap .add-new-h2,
+.wrap .add-new-h2:active,
+.wrap .page-title-action,
+.wrap .page-title-action:active {
+	border-radius: 0;
+}
+
+
+.js .meta-box-sortables .postbox .toggle-indicator:before, .js .sidebar-name .sidebar-name-arrow:before {
+	content: "";
+    background: url('../images/icon--up.svg');
+    background-size: 10px;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.js .postbox .handlediv:focus .toggle-indicator:before {
+	box-shadow:none !important;
+}
+.js .meta-box-sortables .postbox.closed .handlediv .toggle-indicator:before, .js .widgets-holder-wrap.closed .sidebar-name-arrow:before {
+	content: "";
+    background: url('../images/icon--down.svg');
+    background-size: 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.postbox.closed .hndle {
+	border-bottom: 1px !important;
 }

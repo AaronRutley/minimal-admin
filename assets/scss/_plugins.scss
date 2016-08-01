@@ -89,3 +89,8 @@ code[class*="language-"], pre[class*="language-"] {
 #misc-publishing-actions .yoast-seo-score {
 	display: none;
 }
+
+body.taxonomy-category .column-wpseo_score,
+body.taxonomy-category .column-wpseo_score_readability { 
+	display: none;
+}
