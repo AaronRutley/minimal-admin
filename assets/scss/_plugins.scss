@@ -80,3 +80,12 @@ tr.inactive td.plugin-title.column-primary {
 code[class*="language-"], pre[class*="language-"] {
 	font-family: 'operator mono';
 }
+
+// seo tweaks
+#wpseo_meta {
+	overflow: scroll;
+}
+
+#misc-publishing-actions .yoast-seo-score {
+	display: none;
+}

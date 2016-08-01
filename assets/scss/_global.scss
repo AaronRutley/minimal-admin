@@ -86,3 +86,11 @@ span.inline,
 .plugins .plugin-update-tr .plugin-update {
 	box-shadow: none !important;
 }
+
+// remove all the box shadows
+.wp-core-ui .button,
+.wp-core-ui .button-secondary,
+.postbox,
+input {
+	box-shadow: none !important;
+}
