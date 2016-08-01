@@ -5,11 +5,3 @@ $primary-color--dark : #16181B;
 @import '_tables.scss';
 @import '_plugins.scss';
 @import '_third-party.scss';
-
-
-.acf-columns-2 {
-	margin-right:0 !important;
-}
-.acf-column-2 {
-	display: none;
-}

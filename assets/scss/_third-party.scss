@@ -1,35 +1,57 @@
 // Advanced Custom Fields - Table Styles
-#acf-col-left .tablenav.bottom,
-.column-fields,
-.column-acf-fg-count,
-#fields {
-	display: none;
-}
-#acf-cols #title,
-#acf-cols .title {
-	display:block;
-	width:auto;
-}
+// #acf-col-left .tablenav.bottom,
+// .column-fields,
+// .column-acf-fg-count,
+// #fields {
+// 	display: none;
+// }
+// #acf-cols #title,
+// #acf-cols .title {
+// 	display:block;
+// 	width:auto;
+// }
+//
+//
+// #acf-field-group-wrap .wp-list-table.widefat td.page-title {
+// 	display: table-cell;
+// }
 
-// ACF sync status
-th#acf-fg-status {
-	display: none;
-}
-
-#acf-field-group-wrap .wp-list-table.widefat td.page-title {
-	display: table-cell;
-}
-#acf-field-group-wrap .wp-list-table td.column-acf-fg-status {
-	width:10%;
-	display: table-cell;
-
-}
 // ACF - th, quick fix to align headings
-th.sortable a, th.sorted a {
-	padding-top:9px;
+// th.sortable a, th.sorted a {
+// 	padding-top:9px;
+// }
+
+
+.acf-columns-2 {
+	margin-right:0 !important;
+}
+.acf-column-2 {
+	display: none;
+}
+
+.column-acf-fg-count {
+	display: none;
+}
+
+th#acf-fg-status {
+	display: none !important;
+}
+
+#acf-field-group-wrap .wp-list-table .column-acf-fg-status {
+    position: absolute;
+    right: 23px;
+    display: inline-block;
+    float: right;
+	width: 50px !important;
+	padding-top:5px;
+	padding-bottom: 2px;
+	padding-right: 0;
 }
 
 
+.acf-columns-2 .wp-list-table.widefat.pages .row-actions {
+	padding-right: 60px !important;
+}
 // Simple Page Ordering - Styles
 .wp-list-table .ui-sortable-placeholder {
 	height: 30px !important;
@@ -88,5 +110,8 @@ th.sortable a, th.sorted a {
 
 // WP SEO
 #major-publishing-actions #wpseo-score {
+	display: none;
+}
+.column-wpseo-score-readability {
 	display: none;
 }

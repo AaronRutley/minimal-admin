@@ -26,7 +26,7 @@ This plugin is intended for select client projects where the client is an editor
 * Hide screen options tab and help tab
 
 = Works well with the following plugins: =
-* WordPress SEO: Hides SEO columns from the edit page / edit posts screens
+* Yoast SEO: Hides SEO columns from the edit page / edit posts screens
 * Gravity Forms: Grants editor (client) access to manage Gravity Forms
 * Advanced Custom Fields Pro : Minimal field group listings
 * All in One SEO Pack
@@ -74,7 +74,9 @@ function minimal_admin_project_links() {
 = 2.3.0 =
 * Local Development - Project quicklinks feature added
 * Local Development - Admin bar colour change
-* Minor CSS tweaks for WordPress SEO 3.0.3 compatability
+* Minor CSS tweaks for Yoast SEO 3.4
+* Minor CSS tweaks for ACF Pro
+* Minor CSS tweaks for WP 4.6
 * SVG icons for Admin Collapse Sub Pages
 
 = 2.2.0 =
@@ -101,4 +103,3 @@ function minimal_admin_project_links() {
 
 = 1.0.1 =
 * Original Commit
-
