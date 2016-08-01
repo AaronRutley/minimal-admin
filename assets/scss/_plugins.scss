@@ -73,3 +73,10 @@ tr.inactive td.plugin-title.column-primary {
 #adminmenu .awaiting-mod, #adminmenu .update-plugins {
 	background-color:#0073aa;
 }
+
+// acf theme code tweaks
+// acf theme code tweaks
+[data-pseudo-content]::before,
+code[class*="language-"], pre[class*="language-"] {
+	font-family: 'operator mono';
+}
