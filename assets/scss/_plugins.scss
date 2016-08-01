@@ -78,5 +78,6 @@ tr.inactive td.plugin-title.column-primary {
 // acf theme code tweaks
 [data-pseudo-content]::before,
 code[class*="language-"], pre[class*="language-"] {
-	font-family: 'operator mono';
+	font-family: 'operator mono' !important;
+	text-shadow: none !important;
 }
