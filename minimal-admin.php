@@ -10,7 +10,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-/*  Copyright 2015 Aaron Rutley
+/*  Copyright 2016 Aaron Rutley
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -88,7 +88,7 @@ class Minimal_Admin_Plugin {
 			}
 
 		}
-		
+
 	}
 
 	// Local dev CSS to style admin bar

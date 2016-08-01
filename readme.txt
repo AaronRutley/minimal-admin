@@ -2,7 +2,7 @@
 Contributors: AaronRutley
 Tags: admin,minimal,dashboard,cms
 Requires at least: 3.4.2
-Tested up to: 4.4.0
+Tested up to: 4.6.0
 Stable tag: 2.3.0
 License: GPL2+
 
