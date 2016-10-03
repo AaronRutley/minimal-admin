@@ -26,8 +26,9 @@ This plugin is intended for select client projects where the client is an editor
 * Hide screen options tab and help tab
 
 = Works well with the following plugins: =
-* Yoast SEO: Hides SEO columns from the edit page / edit posts screens
-* Gravity Forms: Grants editor (client) access to manage Gravity Forms
+* ACF Theme Code : Typography styles
+* Yoast SEO : Hides SEO columns from the edit page / edit posts screens
+* Gravity Forms : Grants editor (client) access to manage Gravity Forms
 * Advanced Custom Fields Pro : Minimal field group listings
 * All in One SEO Pack
 * Simple Page Ordering
@@ -39,7 +40,7 @@ This plugin is intended for select client projects where the client is an editor
 2. Activate the Plugin via the plugins menu
 
 
-== FAQs ==
+== Frequently Asked Questions ==
 
 = How do I enable the quicklinks dropdown ? =
 
@@ -47,14 +48,11 @@ So your project links appear in the quicklinks dropdown under the W icon in the 
 
 First, define your local URL in wp-config.php or functions.php as this only works on local.
 
-```
-define('LOCAL_URL', 'http://minimaladmin.dev');
-```
+`define('LOCAL_URL', 'http://minimaladmin.dev');`
 
 Secondly, add a function similar to the following to your theme's functions.php
 
-```
-function minimal_admin_project_links() {
+`function minimal_admin_project_links() {
 	$minimal_admin_project_links = array(
 		array("Local","http://localurl.com"),
 		array("Staging","http://stagingurl.com"),
@@ -63,7 +61,7 @@ function minimal_admin_project_links() {
 	);
 	return $minimal_admin_project_links;
 }
-```
+`
 
 == Screenshots ==
 1. Before (when logged in as an editor / client)
